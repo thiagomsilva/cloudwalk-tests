@@ -23,7 +23,6 @@ class AntiFraudController < ApplicationController
     transactions.count >= 3 && transactions.first.transaction_date - transactions.last.transaction_date <= 1.hour
   end
 
-
   def transaction_amount_exceeds_limit?(user_id, amount)
     recent_transactions = Transaction.where(user_id: user_id, transaction_date: 1.day.ago..Time.now)
     total_amount = recent_transactions.sum(:transaction_amount)
